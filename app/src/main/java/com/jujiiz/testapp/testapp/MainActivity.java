@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tvQNo, tvQuestionField;
     Button btnChoice1, btnChoice2, btnChoice3, btnChoice4;
     questionObjects questionObj;
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         random = new Random();
         keys = new ArrayList<String>(hm.keySet());
         Collections.shuffle(Arrays.asList(keys));
+        Log.d("xxxxxxxxxx", String.valueOf(keys));
         randomQuestion();
     }
 
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         value = hm.get(randomKey);
 
         Log.d("xxxxxxxxxx", String.valueOf(randomKey));
-        Log.d("xxxxxxxxxx", String.valueOf(qNo));
+        Log.d("*************", String.valueOf(qNo));
 
         for (int i = 1; i <= 4; i++) {
             ChoiceArray[RCL] = value.get(i);
@@ -75,12 +76,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Collections.shuffle(Arrays.asList(ChoiceArray));
 
-        tvQNo.setText(qNo+1+"");
+        tvQNo.setText(qNo + 1 + "");
         tvQuestionField.setText(value.get(0));
         btnChoice1.setText(ChoiceArray[0]);
         btnChoice2.setText(ChoiceArray[1]);
         btnChoice3.setText(ChoiceArray[2]);
         btnChoice4.setText(ChoiceArray[3]);
+        qNo++;
+        Log.d("*************", String.valueOf(qNo));
     }
 
     @Override
@@ -89,13 +92,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String C2 = btnChoice2.getText().toString();
         String C3 = btnChoice3.getText().toString();
         String C4 = btnChoice4.getText().toString();
-        if(C1.equals(value.get(5)) || C2.equals(value.get(5)) || C3.equals(value.get(5)) || C4.equals(value.get(5))){
-            if(qNo<=qNoMAX){
-                qNo++;
-                randomQuestion();
-            }else{
-                Toast.makeText(getApplicationContext(),"Ending",Toast.LENGTH_SHORT).show();
+        if (qNo < qNoMAX) {
+            if (v == btnChoice1) {
+                if (C1.equals(value.get(5))) {
+                    randomQuestion();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Wrong!", Toast.LENGTH_SHORT).show();
+                }
             }
+            if (v == btnChoice2) {
+                if (C2.equals(value.get(5))) {
+                    randomQuestion();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Wrong!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            if (v == btnChoice3) {
+                if (C3.equals(value.get(5))) {
+                    randomQuestion();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Wrong!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            if (v == btnChoice4) {
+                if (C4.equals(value.get(5))) {
+                    randomQuestion();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Wrong!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Ending", Toast.LENGTH_SHORT).show();
         }
+
+
     }
 }
