@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="QNo">XX</string>
+    <string name="question">Question here</string>
+    <string name="choice1">Choice1</string>
+    <string name="choice2">Choice2</string>
+    <string name="choice3">Choice3</string>
+    <string name="choice4">Choice4</string>
+</resources>
